@@ -10,25 +10,31 @@ const addUser = async (req,res) => {
         message: "All fields are required",
       });
     }
+    const imageDetail={
+        imageName:req.file.originalname,
+        bucketName:req.file.bucket,
+        key:req.file.key
+    }
     const newUser = new User({
       email,
       name,
       address,
       contactNo,
       companyName,
+      image:imageDetail
     });
     await newUser.save();
 
     return res.status(200).json({
       success: true,
       newUser,
-      message: "New User Added",
+      message: "Successfully Got presigned URL",
     });
   } catch (err) {
     console.log(err);
     return res.status(500).json({
       success: false,
-      message: "Error while adding User",
+      message: "Error while getting presigned URL",
     });
   }
 };

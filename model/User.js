@@ -12,10 +12,11 @@ const UserSchema = new mongoose.Schema({
     contactNo:{
         type:Number,
     },
-    // imageURL:{
-    //      type:String,
-    //      require:true
-    // },
+    image:{
+        imageName:String,
+        bucketName:String,
+        key:String
+    },
     address:{
         type:String
     },

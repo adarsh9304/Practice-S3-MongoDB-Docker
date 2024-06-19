@@ -4,6 +4,7 @@ import databaseConnect from './config/database.js';
 import bodyParser from 'body-parser'; 
 import { addUser } from './controller/userData.js';
 import upload from './config/imageUploadS3.js';
+import { profilePresignedUrl } from './controller/profilePresignedUrl.js';
 
 const app=express();
 
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 databaseConnect();
 
 app.post('/user',upload.single('profilephoto') ,addUser)
+app.get('/presignedUrlForProfile',profilePresignedUrl)
 
 app.listen(PORT, () => {
 	console.log(`App is running at ${PORT}`)
